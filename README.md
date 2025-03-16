@@ -1,2 +1,2 @@
 # Animal-Detection
-Upload a video to detect presence of animals.
+Upload a video to detect presence of animals in videos.
