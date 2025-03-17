@@ -7,7 +7,7 @@ import numpy as np
 from ultralytics import YOLO
 
 # Load YOLOv8 model (pre-trained on COCO dataset, which includes animals)
-model_path = os.path.join(os.path.dirname(__file__), "Final.pt")
+model_path = os.path.join(os.path.dirname(__file__), "FinalV2.pt")
 model = YOLO(model_path)
 
 # Function to detect animals in video
