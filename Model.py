@@ -4,7 +4,7 @@ import tempfile
 from ultralytics import YOLO
 
 # Load YOLOv8 model (pre-trained on COCO dataset, which includes animals)
-model = YOLO('FinalV2.pt')
+model = YOLO('FinalV4.pt')
 
 # Function to detect animals in video
 def detect_animals(video_path):
