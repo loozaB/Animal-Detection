@@ -1,4 +1,6 @@
 import streamlit as st
+import torch
+import numpy as np
 import cv2
 import tempfile
 from ultralytics import YOLO
@@ -24,7 +26,7 @@ def detect_animals(video_path):
             for box in result.boxes:
                 cls = int(box.cls[0])
                 label = model.names[cls]
-                if label in ['Elephant', 'tiger', 'leopard', 'rhino']:  # Add more animal classes if needed
+                if label in ['Elephant', 'tiger', 'leopard', 'Rhino']:  # Add more animal classes if needed
                     x1, y1, x2, y2 = map(int, box.xyxy[0])
                     conf = box.conf[0].item()
                     
