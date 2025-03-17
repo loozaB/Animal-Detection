@@ -1,10 +1,14 @@
 import streamlit as st
 import cv2
+import torch
 import tempfile
+import os
+import numpy as np
 from ultralytics import YOLO
 
 # Load YOLOv8 model (pre-trained on COCO dataset, which includes animals)
-model = YOLO('FinalV2.pt')
+model_path = os.path.join(os.path.dirname(__file__), "Final.pt")
+model = YOLO(model_path)
 
 # Function to detect animals in video
 def detect_animals(video_path):
@@ -45,6 +49,13 @@ st.title("Animal Detection in Video using YOLOv8")
 uploaded_video = st.file_uploader("Upload a Video", type=["mp4", "avi", "mov", "mkv"])
 
 if uploaded_video:
-    tfile = tempfile.NamedTemporaryFile(delete=False)
-    tfile.write(uploaded_video.read())
-    detect_animals(tfile.name)
+    # Use a temporary file with a valid extension
+    _, temp_video_path = tempfile.mkstemp(suffix=".mp4")
+    
+    with open(temp_video_path, "wb") as f:
+        f.write(uploaded_video.read())
+    
+    detect_smoke(temp_video_path)
+    
+    # Cleanup after processing
+    os.remove(temp_video_path)
